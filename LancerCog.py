@@ -12,14 +12,15 @@ class LancerCog(commands.Cog):
         resultat = self.lanceur.lancer_de_des(carac, comp, mana)
         roll_affichable = " , ".join([i[0] for i in resultat[0]])
         
-       # face_url = f"https://cdn.discordapp.com/attachments/833174207818498068/835588918464348160/Dice4BotDiscord-{min(resultat[2], 9)}.png"
+        # face_url = f"https://cdn.discordapp.com/attachments/833174207818498068/835588918464348160/Dice4BotDiscord-{min(resultat[2], 9)}.png"
+        face_url = f"https://assiande.github.io/bot-disc-scales/des/Dice4BotDiscord-{min(resultat[2], 9)}.png"
 
         embed = discord.Embed(
             description=f"{total_des}g**{carac}** ({mana}dMana)\n{roll_affichable}",
             color=0x66c0c6
         )
         embed.set_author(name=ctx.author.name, icon_url=ctx.author.display_avatar.url)
-        # embed.set_thumbnail(url=face_url)
+        embed.set_thumbnail(url=face_url)
         embed.add_field(name="Seuil", value=f"{resultat[1]}", inline=True)
         embed.add_field(name="Qualité", value=f"{resultat[2]}", inline=True)
 
