@@ -5,3 +5,4 @@ config
 nohup.out
 bot-scales.pid
 nohuplog
+desMana.log

@@ -1,0 +1,13 @@
+[Unit]
+Description=Bot DesMana pour Scales
+After=network.target
+
+[Service]
+User=leo
+Group=leo
+WorkingDirectory=/home/leo/bots-disord/bot-disc-scales
+ExecStart=/home/leo/bots-disord/bot-disc-scales/.venv/bin/python3 main.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

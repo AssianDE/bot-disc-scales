@@ -1,8 +1,19 @@
 import os
+import logging
 import discord
 from dotenv import load_dotenv
 from discord.ext import commands
 import MyHelp
+
+# Configuration du logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('desMana.log'),  # Écrit les logs dans un fichier
+        logging.StreamHandler()         # Affiche les logs dans la console
+    ]
+)
 
 # Récupération du token
 load_dotenv(dotenv_path="config")
@@ -19,9 +30,9 @@ bot = commands.Bot(
 
 @bot.event
 async def on_ready():
-    print(f"Le Bot **{bot.user.display_name}** est prêt")
-    print(f"Logged in as {bot.user} ({bot.user.id})")
-    print("------")
+    logging.info(f"Le Bot **{bot.user.display_name}** est prêt")
+    logging.info(f"Logged in as {bot.user} ({bot.user.id})")
+    logging.info("------")
 
 # Chargement des extensions (Cogs)
 async def load_extensions():
@@ -29,9 +40,9 @@ async def load_extensions():
     for extension in ["LancerCog", "BoobsCog"]:
         try:
             await bot.load_extension(extension)
-            print(f"Loaded extension '{extension}'")
+            logging.info(f"Loaded extension '{extension}'")
         except Exception as e:
-            print(f"Failed to load extension '{extension}': {e}")
+            logging.error(f"Failed to load extension '{extension}': {e}")
 
 # Fonction principale pour démarrer le bot
 async def main():
